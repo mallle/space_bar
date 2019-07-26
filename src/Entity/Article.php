@@ -82,7 +82,7 @@ class Article
         return $this->publishedAt;
     }
 
-    public function setPublischedAt(?\DateTimeInterface $publishedAt): self
+    public function setPublishedAt(?\DateTimeInterface $publishedAt): self
     {
         $this->publishedAt = $publishedAt;
 
