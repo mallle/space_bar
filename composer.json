@@ -12,6 +12,7 @@
         "symfony/dotenv": "4.3.*",
         "symfony/flex": "^1.3.1",
         "symfony/framework-bundle": "4.3.*",
+        "symfony/orm-pack": "^1.0",
         "symfony/twig-bundle": "4.3.*",
         "symfony/web-server-bundle": "4.3.*",
         "symfony/yaml": "4.3.*"
@@ -20,6 +21,7 @@
         "easycorp/easy-log-handler": "^1.0.7",
         "sensiolabs/security-checker": "^6.0",
         "symfony/debug-bundle": "*",
+        "symfony/maker-bundle": "^1.12",
         "symfony/monolog-bundle": "^3.0",
         "symfony/profiler-pack": "*",
         "symfony/var-dumper": "*"
