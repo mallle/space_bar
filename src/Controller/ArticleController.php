@@ -6,7 +6,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Service\MarkdownHelper;
 use App\Service\SlackClient;
-use Doctrine\ORM\EntityManagerInterface;
+// use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 
@@ -36,20 +36,10 @@ class ArticleController extends AbstractController
     /**
      * @Route("/news/{slug}", name="article_show")
      */
-    public function show($slug, SlackClient $slack, EntityManagerInterface $em)
+    public function show(Article $article, SlackClient $slack)
     {
-
-        if ($slug === 'khaaaaaan') {
+        if ($article->getSlug() === 'khaaaaaan') {
             $slack->sendMessage('Kaahn', 'Ah, Kirk, my old friend..');
-        }
-
-        $repository = $em->getRepository(Article::class);
-        
-        /**@var Article $article */
-        $article = $repository->findOneBy(['slug' => $slug]);
-
-        if (!$article) {
-            throw $this->createNotFoundException(sprintf('No article for slug "%s"', $slug));
         }
 
         $comments = [
