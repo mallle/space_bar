@@ -27,14 +27,15 @@ class MarkdownHelper
             $this->logger->info('They are talking about bacon again!');
         }
         if ($this->isDebug) {
-            $item = $this->cache->getItem('markdown_'.md5($source));
-            if(!$item->isHit()){
-                
-                    return $this->markdown->transform($source);
-                
-                $this->cache->save($item);
-            }
+            return $this->markdown->transform($source);
         }
+
+        $item = $this->cache->getItem('markdown_'.md5($source));
+        if(!$item->isHit()){
+            $this->set($this->markdown->transform($source));   
+            $this->cache->save($item);
+        }
+        
         return $item->get();
     }
 
