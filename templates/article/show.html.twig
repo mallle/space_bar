@@ -22,7 +22,8 @@
                                     Mike Ferengi
                                 </span>
                                 <span class="pl-2 article-details">
-                                    5 hours ago</span>
+                                    {{ article.publishedAt ? article.publishedAt|ago : 'unpublished' }}
+                                </span>
                                 <span class="pl-2 article-details">
                                     <span class="js-like-article-count">5</span>
                                     <a href="{{ path('article_toggle_heart', {slug: article.slug}) }}" class="fa fa-heart-o like-article js-like-article"></a>
