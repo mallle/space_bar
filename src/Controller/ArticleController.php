@@ -10,6 +10,7 @@ use App\Service\SlackClient;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 
 class ArticleController extends AbstractController
 {
@@ -42,16 +43,9 @@ class ArticleController extends AbstractController
         if ($article->getSlug() === 'khaaaaaan') {
             $slack->sendMessage('Kaahn', 'Ah, Kirk, my old friend..');
         }
-
-        $comments = [
-            'I ate a normal rock noce. It did NOT taste like bacon!',
-            'I like bacon sooo much',
-            'Why should they taste like bacon?'
-        ];
-
+        
         return $this->render('article/show.html.twig', [
             'article' => $article,
-            'comments' => $comments
         ]);
     }
 
