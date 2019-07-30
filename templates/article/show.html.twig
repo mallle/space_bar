@@ -53,7 +53,7 @@
                         <div class="col-sm-12">
                             <h3>
                                 <i class="pr-3 fa fa-comment"></i>
-                                {{ article.comments | length}}
+                                {{ article.getNonDeletedComments | length}}
                                 Comments</h3>
                             <hr>
                             <div class="row mb-5">
@@ -69,13 +69,17 @@
                                 </div>
                             </div>
 
-                            {% for comment in article.comments %}
+                            {% for comment in article.getNonDeletedComments %}
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <img class="comment-img rounded-circle" src="{{ asset('images/alien-profile.png') }}">
                                         <div class="comment-container d-inline-block pl-3 align-top">
                                             <small>about
                                                 {{ comment.createdAt|ago }}</small>
+                                            {% if comment.isDeleted %}
+                                                <span class="fa fa-close"></span>
+                                                deleted
+                                            {% endif %}
                                             <span class="commenter-name">{{ comment.authorName }}</span>
                                             <br>
                                             <span class="comment">{{ comment.content }}</span>
