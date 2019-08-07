@@ -36,10 +36,12 @@ class CommentRepository extends ServiceEntityRepository
      */
     public function findAllWithSearch(?string $term){
 
-        $qb = $this->createQueryBuilder('c');
+        $qb = $this->createQueryBuilder('c')
+            ->innerJoin('c.article', 'a')
+            ->addSelect('a');
 
         if($term){
-            $qb->andWhere('c.content LIKE :term OR c.authorName LIKE :term')
+            $qb->andWhere('c.content LIKE :term OR c.authorName LIKE :term or a.title LIKE :term')
                 ->setParameter('term', '%' . $term . '%');
         }
 
