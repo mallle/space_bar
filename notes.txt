@@ -1,0 +1,7 @@
+Authentication:
+    is all about finding out who you are and making you prove it.
+    It's the login process.
+
+Authorization:
+    happens after authentication:
+    it's all about determining whether or not you have access to something.
