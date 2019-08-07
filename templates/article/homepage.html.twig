@@ -37,6 +37,12 @@
                                     {{ article.publishedAt ? article.publishedAt|ago }}
 
                                 </span>
+                                <br>
+                                {% for tag in article.tags %}
+                                    <small>
+                                        <span class="badge badge-light">{{ tag.name }}</span>
+                                    </small>
+                                {% endfor %}
                             </div>
                         </a>
                     </div>
