@@ -54,7 +54,7 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $imageFilename;
+    private $imageFilename = 'lightspeed.png';
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article", fetch="EXTRA_LAZY")
@@ -130,6 +130,11 @@ class Article
         $this->publishedAt = $publishedAt;
 
         return $this;
+    }
+
+    public function isPublished(): bool
+    {
+        return $this->publishedAt !== null;
     }
 
     public function getHeartCount(): ?int
