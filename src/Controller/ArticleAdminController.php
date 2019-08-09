@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+use App\Form\ArticleFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,16 @@ class ArticleAdminController extends AbstractController
      */
     public function new(EntityManagerInterface $em)
     {
-        die('todo');
+
+        $form = $this->createForm(ArticleFormType::class);
+
+        return $this->render('article_admin/new.html.twig', [
+            'articleForm' => $form->createView()
+        ]);
+
+
+
+/*        die('todo');
         $article = new Article();
         $article->setTitle('Why Asteorids Taste Like Bacon')
             ->setSlug('why-asteroids-taste-like-bacon-'.rand(100, 999))
@@ -52,7 +62,7 @@ EOF
             'Hiya! New Article id: #%d slug: %s',
             $article->getId(),
             $article->getSlug()
-        ));
+        ));*/
     }
 
     /**
