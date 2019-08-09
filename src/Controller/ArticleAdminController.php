@@ -31,6 +31,7 @@ class ArticleAdminController extends AbstractController
            $em->persist($article);
            $em->flush();
 
+           $this->addFlash('success', 'Article Created! Knowledge is power!');
            return $this->redirectToRoute('app_homepage');
         }
 
@@ -94,7 +95,7 @@ EOF
     }
 
     /**
-     * @Route("/admin/article")
+     * @Route("/admin/article", name="admin_article_list")
      */
     public function list(ArticleRepository $articleRepository)
     {
