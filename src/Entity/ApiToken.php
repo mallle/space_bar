@@ -58,4 +58,15 @@ class ApiToken
     {
         return $this->user;
     }
+
+    public function isExpired(): bool
+    {
+        /*
+         * TODO
+         * Remove return false
+         */
+        return false;
+        // To check if the token is expired
+        return $this->getExpiresAt() <= new \DateTime();
+    }
 }
