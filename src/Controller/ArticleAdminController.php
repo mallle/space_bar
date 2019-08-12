@@ -25,7 +25,7 @@ class ArticleAdminController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-           /** @var Article $article */
+            /** @var Article $article */
            $article = $form->getData();
 
            $em->persist($article);
