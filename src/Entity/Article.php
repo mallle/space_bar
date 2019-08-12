@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use App\Repository\CommentRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 
 /**
@@ -27,6 +29,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="My own custom message - please fill in a title")
      */
     private $title;
 
@@ -250,6 +253,18 @@ class Article
         $this->author = $author;
 
         return $this;
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        if (stripos($this->getTitle(), 'the borg') !== false) {
+            $context->buildViolation('Um.. the borg kinda makes us nervous')
+                ->atPath('title')
+                ->addViolation();
+        }
     }
 
 }

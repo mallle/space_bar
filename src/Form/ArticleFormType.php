@@ -30,7 +30,8 @@ class ArticleFormType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'help' => 'Choose something catchy!'
+                'help' => 'Choose something catchy!',
+                'required'=> false
             ])
             ->add('content')
             ->add('publishedAt', null, [
