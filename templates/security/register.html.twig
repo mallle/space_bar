@@ -14,6 +14,16 @@
     {{- form_widget(form, widget_attr) -}}
     {{- form_help(form) -}}
 {% endblock %}
+
+{% block _user_registration_form_agreeTerms_row %}
+    <div class="checkbox mb-3">
+        {{ form_errors(form) }}
+        <label>
+            <input type="checkbox" name="{{ full_name }}" required> Agree to terms I for sure read
+        </label>
+    </div>
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
