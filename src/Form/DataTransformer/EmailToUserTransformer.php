@@ -4,6 +4,7 @@
 namespace App\Form\DataTransformer;
 
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
