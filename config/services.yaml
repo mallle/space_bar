@@ -31,3 +31,8 @@ services:
     
     # custom aliases for autowiring
     Nexy\Slack\Client: '@nexy_slack.client'
+
+    App\Form\TypeExtension\TextareaSizeExtension:
+        tags:
+            - { name: form.type_extension,
+                extended_type: Symfony\Component\Form\Extension\Core\Type\TextareaType }
