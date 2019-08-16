@@ -10,7 +10,7 @@ use App\Entity\Article;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-class ArticleAdminController extends AbstractController
+class ArticleAdminController extends BaseController
 {
     /**
      * @Route("/admin/article/new", name="admin_article_new")
@@ -115,9 +115,15 @@ EOF
 
     /**
      * @Route("/admin/article/location-select", name="admin_article_location_select")
+     * @IsGranted("ROLE_USER")
      */
     public function getSpecificLocationSelect(Request $request)
     {
+        //a custom security check
+        if( !$this->isGranted('ROLE_ADMIN_ARTICLE') && $this->getUser()->getArticles()->isEmpty()) {
+            throw $this->createAccessDeniedException();
+        }
+
         $article = new Article();
         $article->setLocation($request->query->get('location'));
         $form = $this->createForm(ArticleFormType::class, $article);
