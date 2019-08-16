@@ -20,6 +20,7 @@ class Article
 {
     use TimestampableEntity;
 
+    public $INTERSTELLAR_SPACE = 'interstellar_space';
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -286,7 +287,10 @@ class Article
     public function setLocation(?string $location): self
     {
         $this->location = $location;
-
+        
+        if (!$this->location || $this->location ===  $this->INTERSTELLAR_SPACE) {
+            $this->setSpecificLocationName(null);
+        }
         return $this;
     }
 
